@@ -52,7 +52,7 @@ https://github.com/Huawei/fpga-accel.git
 用户在开始硬件开发流程前，需要下载相关网表文件到用户服务器，具体下载路径如下：
 
 ```bash
-https://huawei-fpga.obs.cn-north-1.myhwclouds.com
+https://
 ```
 
 #### 说明:
@@ -83,14 +83,8 @@ F100/sdaccel/hardware/sdaccel_design/lib/platform/xilinx_huawei-vu5p_2ddr-dynami
 下载路径如下：
 
 ```bash
-https://huawei-fpga.obs.cn-north-1.myhwclouds.com
+https://
 ```
-#### 说明:
-
-下载的shell文件及版本信息可参考Shared-development-tx/F100/ocl_bin/文件夹下的文件，用户根据需求进行下载。
-
-该shell版本匹配有相应的sha256校验文件，名称与shell版本一致，用户可对其进行相应校验以检验正确性。
-
 
 ### 4.3 加载Shell版本到FPGA卡
 

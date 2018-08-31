@@ -34,13 +34,13 @@
 在华为云上下载开发套件到本地服务器，下载路径如下：
 
 ```bash
-https://github.com/Huawei/fpga-accel.git
+https://github.com/huawei/fpgaaccel-fc1.git
 ```
 
 在华为support网站上下载相关网表文件到用户服务器，下载路径如下：
 
 ```bash
-https://huawei-fpga.obs.cn-north-1.myhwclouds.com
+https://
 ```
 
 ##### 说明:
@@ -136,7 +136,7 @@ sh run.sh emu ../prj/bin/mmult ../prj/bin/bin_mmult_hw_emu.xclbin
 下载Shell版本到用户服务器，下载路径如下：
 
 ```bash
-https://huawei-fpga.obs.cn-north-1.myhwclouds.com
+https://
 ```
 
 使用开发套件中的脚本`fmtk`将下载的shell版本加载到FPGA卡中，该脚本路径如下：

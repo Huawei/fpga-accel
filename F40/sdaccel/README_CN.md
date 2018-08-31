@@ -54,7 +54,7 @@ https://huawei-fpga.obs.cn-north-1.myhwclouds.com
 
 #### 说明:
 
-下载的网表文件及版本信息可参考Shared-development-tx/F40/hardware/sdaccel_design/文件夹下的version_note_sdaccel.txt文件，用户根据需求进行下载。
+下载的网表文件及版本信息可参考F40/sdaccel/hardware文件夹下的version_note_sdaccel.txt文件，用户根据需求进行下载。
 
 所下载网表文件包含xxx.dsa、xxx.spfm、xxx.xpfm三个，解压后存放在以下路径：
 
@@ -80,12 +80,10 @@ F40/sdaccel/hardware/sdaccel_design/lib/platform/xilinx_huawei-vu5p_2ddr-dynamic
 下载路径如下：
 
 ```bash
-https://huawei-fpga.obs.cn-north-1.myhwclouds.com
+https://
 ```
 
 #### 说明:
-
-下载的shell文件及版本信息可参考Shared-development-tx/F40/ocl_bin/文件夹下的文件，用户根据需求进行下载。
 
 该shell版本匹配有相应的sha256校验文件，名称与shell版本一致，用户可对其进行相应校验以检验正确性。
 
