@@ -1,0 +1,1 @@
+KERNEL=="xclmgmt*",MODE="0666",SYMLINK="%k"
