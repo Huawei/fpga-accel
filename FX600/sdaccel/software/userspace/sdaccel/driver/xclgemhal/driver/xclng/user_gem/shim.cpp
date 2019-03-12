@@ -1409,5 +1409,5 @@ int xclCddrInit(xclDeviceHandle handle)
     if (!drv) {
         return -1;
     }
-    drv->cddrInit();
+    return drv->cddrInit();
 }

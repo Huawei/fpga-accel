@@ -142,7 +142,7 @@ sh run.sh emu ../prj/bin/mmult ../prj/bin/bin_mmult_hw_emu.xclbin
 curl -k -s -O --retry 3 https://huawei-fpga.obs.cn-north-1.myhwclouds.com/FX300/hardware/sdaccel_design/bin_v01210125/hcf_sdaccel_x_vu5p_1xpr_shell.bin
 ```
 
-使用工具`fmtk`将下载的shell bin加载到FPGA卡中，工具`fmtk`下载路径`http://support.huawei.com/enterprise/zh/software/23249385-ESW2000049499`。使用方法可参考《FX300开发者指南》文档中相关章节。
+使用工具`fmtk`将下载的shell bin加载到FPGA卡中，工具`fmtk`请登录`http://support.huawei.com/enterprise/zh/index.html`，在搜索框中输入关键字`fmtk`获取软件包。
 
 #### 说明:
 

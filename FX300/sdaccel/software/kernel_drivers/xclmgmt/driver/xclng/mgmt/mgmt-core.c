@@ -415,6 +415,7 @@ static struct xclmgmt_char *create_char(struct xclmgmt_dev *lro, int bar)
 {
 	struct xclmgmt_char *lro_char;
 	int rc;
+    unsigned int instance;
 
 	printk(KERN_INFO "%s: %s \n", DRV_NAME, __FUNCTION__);
 	/* allocate book keeping data structure */
@@ -428,7 +429,8 @@ static struct xclmgmt_char *create_char(struct xclmgmt_dev *lro, int bar)
 	/* couple the control device file operations to the character device */
 	cdev_init(&lro_char->cdev, &ctrl_fops);
 	lro_char->cdev.owner = THIS_MODULE;
-	lro_char->cdev.dev = MKDEV(MAJOR(xclmgmt_devnode), lro->instance);
+    instance = lro->instance;
+	lro_char->cdev.dev = MKDEV(MAJOR(xclmgmt_devnode), instance);
 	rc = cdev_add(&lro_char->cdev, lro_char->cdev.dev, 1);
 	if (rc < 0) {
 		printk(KERN_INFO "cdev_add() = %d\n", rc);
@@ -607,14 +609,21 @@ end:
 static void xclmgmt_remove(struct pci_dev *pdev)
 {
 	struct xclmgmt_dev *lro;
-	printk(KERN_INFO "remove(0x%p)\n", pdev);
-	if ((pdev == 0) || (dev_get_drvdata(&pdev->dev) == 0)) {
-		printk(KERN_INFO
-		       "remove(dev = 0x%p) pdev->dev.driver_data = 0x%p\n",
-		       pdev, dev_get_drvdata(&pdev->dev));
+    
+	if ((pdev == 0) || (dev_get_drvdata(&pdev->dev) == 0)) {        
+        printk(KERN_INFO
+    	       "remove(dev is null) or pdev->dev.driver_data is null\n");
 		return;
 	}
+    
 	lro = (struct xclmgmt_dev *)dev_get_drvdata(&pdev->dev);
+    if (0 == lro)
+    {
+        printk(KERN_INFO
+    	       "remove(dev = 0x%p) where lro is null\n", pdev);
+        return;
+    }
+    
 	printk(KERN_INFO
 	       "remove(dev = 0x%p) where pdev->dev.driver_data = 0x%p\n",
 	       pdev, lro);

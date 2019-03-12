@@ -223,7 +223,7 @@ u16 get_dsa_version(struct xclmgmt_dev *lro)
 {
     //hw dsa version    
     if (lro->pci_dev->vendor == 0x19e5) {
-        return 0x50;
+        return 0x51;
     }
     
 	return lro->pci_dev->subsystem_device & 0xff;
@@ -320,9 +320,6 @@ long reset_hot_ioctl(struct xclmgmt_dev *lro)
 		mgmt_info(lro, "PCI Hot reset is not supported on 5.0 platforms.");
 		return -EOPNOTSUPP;
 	}
-
-	BUG_ON(!pdev->bus);
-	BUG_ON(!pdev->bus->self);
 
 	if (!pdev->bus || !pdev->bus->self) {
 		printk(KERN_ERR "%s: Unable to identify device root port for card %d\n", DRV_NAME,

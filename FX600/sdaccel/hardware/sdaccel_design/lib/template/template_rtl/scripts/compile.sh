@@ -25,6 +25,17 @@ fi
 script=$(readlink -f $script)
 script_path=${script%/*}
 
+script_name=${BASH_SOURCE[0]}
+# Judge which method that scripts run
+if [ $script_name == $0 ] ; then
+    # using 'sh'
+    cd $script_path
+else
+    # using 'source'
+    echo "please use sh instead of source"
+    return
+fi
+
 realpath=$(readlink -f $script_path)
 
 #set environment value

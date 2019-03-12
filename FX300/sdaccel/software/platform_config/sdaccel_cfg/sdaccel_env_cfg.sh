@@ -60,7 +60,10 @@ if [[ -z "$MODULE_INFO" ]]; then
     echo "$DRIVER driver is installed now!"
 else
     echo ""
-    echo "$DRIVER driver is exist!"
+    echo "The exsisted $DRIVER driver will be uninstalled and the new will be re-install !"
+    rmmod xocl 
+    modprobe drm
+    insmod xocl.ko
     echo "Note: If necessary, please re-insmod $DRIVER driver manually!"
     echo ""
 fi

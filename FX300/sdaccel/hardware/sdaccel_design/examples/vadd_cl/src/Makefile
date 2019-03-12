@@ -146,8 +146,5 @@ help:
 	@echo "Compile XCLBIN file for system run only"
 	@echo "make xbin_hw"
 	@echo ""
-	@echo "Compile CPU emulation using xilinx:huawei-vu5p:2ddr-dynamic:5.1 DSA"
-	@echo "make  XDEVICE=xilinx:huawei-vu5p:2ddr-dynamic:5.1 run_cpu_em"
-	@echo ""
 	@echo "Clean working diretory"
 	@echo "make  clean"

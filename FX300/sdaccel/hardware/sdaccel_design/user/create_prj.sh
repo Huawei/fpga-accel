@@ -44,7 +44,7 @@ function Usage
 	echo "                       : temp_rtl      rtl kernel project "
     echo "---------------------------------------------------------------------"
     echo "Example: when you run this command 'sh create_prj.sh usr_prj0 temp_cl' ,"
-    echo "         the directory will be build in '/fpga_design/hardware/vivado_design/usr/usr_prj0'" 
+    echo "         the directory will be build in '/fpga_design/hardware/sdaccel_design/user/usr_prj0'" 
     echo "Note   : The [filename] must start with letters, digits, and underscores."
     echo " "
 }

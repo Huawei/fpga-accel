@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #-------------------------------------------------------------------------------
-#      Copyright 2018 Huawei Technologies Co., Ltd. All Rights Reserved.
+#      Copyright 2018-2019 Huawei Technologies Co., Ltd. All Rights Reserved.
 # 
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the Huawei Software License (the "License").
@@ -88,20 +88,13 @@ function check_more_soft () {
 
 # Show usage info
 function usage () {
-    echo  -e "\e[0;35m Usage: source setup.sh [software directory] / -c / --clean / -u / -l / -xr \e[0m"
-    echo  -e "\e[0;35m Setup hardware develop eviranment. \e[0m"
+    echo  -e "\e[0;35m Usage: source setup.sh -h / -v \e[0m"
+    echo  -e "\e[0;35m Setup hardware develop environment. \e[0m"
     echo  -e "\e[0;35m example: source setup.sh \e[0m"
-    echo  -e "\e[0;35m example: source setup.sh /opt \e[0m"
     echo  -e "\e[0;35m \e[0m"
     echo  -e "\e[0;35m Parameter: \e[0m"
     echo  -e "\e[0;35m         -h / --help          Print usage info \e[0m"
-    echo  -e "\e[0;35m         -u / --usercfg       Specify usercfg file(Using setup.cfg as default) \e[0m"
-    echo  -e "\e[0;35m         -s / --su            Specify permitted user(Using root as default) \e[0m"
-    echo  -e "\e[0;35m         -l / --license       Specify user license cfg for software \e[0m"
-    echo  -e "\e[0;35m         -xr/ --xilinxreq     Specify xilinx vivado version \e[0m"
-    echo  -e "\e[0;35m         -x / --usesdx        Using SDAccel develop mode \e[0m"
     echo  -e "\e[0;35m         -v / --verbose       Enable Verbose mode(More information will be print) \e[0m"
-    echo  -e "\e[0;35m         [software directory] Software install directory(If not define using /software as default) \e[0m"
 }
 
 # Touch empty file to stop subprocess
@@ -117,7 +110,7 @@ default_soft_dir="/software"
 soft_dir=$default_soft_dir
 soft_dir_userdef=0
 
-vivado_ver_req="2017.2"
+vivado_ver_req="2017.4.op"
 
 script_name=${BASH_SOURCE[0]}
 

@@ -519,7 +519,6 @@ int XOCLShim::xclGetDeviceInfo2(xclDeviceInfo2 *info)
     info->mDeviceVersion = obj.subsystem_device & 0x00ff;
 
     // TUL cards (0x8238) have 4 GB / bank;
-    // VU9P's (923F) also have 4GB/bank.
     // other cards have 8 GB memory / bank
     
     info->mDataAlignment = KB(4);
@@ -1408,5 +1407,5 @@ int xclCddrInit(xclDeviceHandle handle)
     if (!drv) {
         return -1;
     }
-    drv->cddrInit();
+    return drv->cddrInit();
 }

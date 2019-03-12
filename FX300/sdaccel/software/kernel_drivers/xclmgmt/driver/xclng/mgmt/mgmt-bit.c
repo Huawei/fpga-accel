@@ -135,6 +135,9 @@ static int bitstream_parse_header(const unsigned char *Data, unsigned int Size, 
 
 	/* allocate space for design name and final null character. */
 	Header->DesignName = kmalloc(Len, GFP_KERNEL);
+    if (!Header->DesignName) {    
+		return -1;
+    }
 
 	/* Read in Design Name */
 	for (I = 0; I < Len; I++)
@@ -156,6 +159,9 @@ static int bitstream_parse_header(const unsigned char *Data, unsigned int Size, 
 
 	/* allocate space for part name and final null character. */
 	Header->PartName = kmalloc(Len, GFP_KERNEL);
+    if (!Header->PartName) {    
+		return -1;
+    }
 
 	/* Read in part name */
 	for (I = 0; I < Len; I++)
@@ -176,7 +182,10 @@ static int bitstream_parse_header(const unsigned char *Data, unsigned int Size, 
 
 	/* allocate space for date and final null character. */
 	Header->Date = kmalloc(Len, GFP_KERNEL);
-
+    if (!Header->Date) {    
+		return -1;
+    }
+    
 	/* Read in date name */
 	for (I = 0; I < Len; I++)
 		Header->Date[I] = Data[Index++];
@@ -195,6 +204,9 @@ static int bitstream_parse_header(const unsigned char *Data, unsigned int Size, 
 
 	/* allocate space for time and final null character. */
 	Header->Time = kmalloc(Len, GFP_KERNEL);
+    if (!Header->Time) {    
+		return -1;
+    }
 
 	/* Read in time name */
 	for (I = 0; I < Len; I++)
@@ -256,8 +268,6 @@ static long bitstream_icap(struct xclmgmt_dev *lro, const char *buffer, unsigned
 
 	printk(KERN_DEBUG "IOCTL %s:%s:%d\n", __func__, __FILE__, __LINE__);
 
-	BUG_ON(!buffer);
-	BUG_ON(!length);
 	if (!buffer || !length)
 		return 0;
 
@@ -293,10 +303,21 @@ static long bitstream_icap(struct xclmgmt_dev *lro, const char *buffer, unsigned
 	}
 
 free_buffers:
-	kfree(bit_header.DesignName);
-	kfree(bit_header.PartName);
-	kfree(bit_header.Date);
-	kfree(bit_header.Time);
+    if (bit_header.DesignName) {    
+	    kfree(bit_header.DesignName);
+    }
+    
+    if (bit_header.PartName) {    
+	    kfree(bit_header.PartName);
+    }
+    
+    if (bit_header.Date) {    
+	    kfree(bit_header.Date);
+    }
+    
+    if (bit_header.Time) {    
+	    kfree(bit_header.Time);
+    }
 	printk(KERN_DEBUG "IOCTL %s:%d\n", __FILE__, __LINE__);
 	return err;
 }
@@ -537,10 +558,22 @@ long load_boot_firmware(struct xclmgmt_dev *lro)
 
 done:
 	release_firmware(fw);
-	kfree(bit_header.DesignName);
-	kfree(bit_header.PartName);
-	kfree(bit_header.Date);
-	kfree(bit_header.Time);
+    if (bit_header.DesignName) {    
+	    kfree(bit_header.DesignName);
+    }
+
+    if (bit_header.PartName) {    
+	    kfree(bit_header.PartName);
+    }
+
+    if (bit_header.Date) {    
+	    kfree(bit_header.Date);
+    }
+
+    if (bit_header.Time) {    
+	    kfree(bit_header.Time);
+    }
+    
 	return err;
 }
 
@@ -644,11 +677,26 @@ static int bitstream_ioctl_icap(struct xclmgmt_dev *lro, const char __user *bit_
 
 free_buffers:
 	freeAXIGate(lro);
-	kfree(buffer);
-	kfree(bit_header.DesignName);
-	kfree(bit_header.PartName);
-	kfree(bit_header.Date);
-	kfree(bit_header.Time);
+
+    if (buffer) {    
+	    kfree(buffer);
+    }
+    
+    if (bit_header.DesignName) {    
+	    kfree(bit_header.DesignName);
+    }
+
+    if (bit_header.PartName) {    
+	    kfree(bit_header.PartName);
+    }
+
+    if (bit_header.Date) {    
+	    kfree(bit_header.Date);
+    }
+
+    if (bit_header.Time) {    
+	    kfree(bit_header.Time);
+    }
 	printk(KERN_INFO "IOCTL %s:%d\n", __FILE__, __LINE__);
 	return err;
 }

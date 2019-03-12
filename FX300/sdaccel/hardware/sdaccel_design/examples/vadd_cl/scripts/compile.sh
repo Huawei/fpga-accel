@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #-------------------------------------------------------------------------------
-#      Copyright (c) 2018 Huawei Technologies Co., Ltd. All Rights Reserved.
+#      Copyright (c) 2018~2019 Huawei Technologies Co., Ltd. All Rights Reserved.
 # 
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the Huawei Software License (the "License").
@@ -24,6 +24,17 @@ else
 fi
 script=$(readlink -f $script)
 script_path=${script%/*}
+
+script_name=${BASH_SOURCE[0]}
+# Judge which method that scripts run
+if [ $script_name == $0 ] ; then
+    # using 'sh'
+    cd $script_path
+else
+    # using 'source'
+    echo "please use sh instead of source"
+    return
+fi
 
 realpath=$(readlink -f $script_path)
 
@@ -136,7 +147,7 @@ if [[ $1 == "cpu_em" ]]
         else 
             echo "*************************************************"
             echo "****                                     ********"
-            echo -e "****  CPU EMULATION COMPILE\e[1;31m FIALED \e[0m     ********"
+            echo -e "****  CPU EMULATION COMPILE\e[1;31m FAILED \e[0m     ********"
             echo "****                                     ********"
             echo "*************************************************"
         fi
@@ -153,7 +164,7 @@ elif [[ $1 == "hw_em" ]]
         else 
             echo "*************************************************"
             echo "****                                     ********"
-            echo -e "****  HW EMULATION COMPILE\e[1;31m FIALED \e[0m       ********"
+            echo -e "****  HW EMULATION COMPILE\e[1;31m FAILED \e[0m       ********"
             echo "****                                     ********"
             echo "*************************************************"
         fi
@@ -170,7 +181,7 @@ elif [[ $1 == "host" ]]
         else 
             echo "*************************************************"
             echo "****                                     ********"
-            echo -e "****       HOST COMPILE\e[1;31m FIALED \e[0m          ********"
+            echo -e "****       HOST COMPILE\e[1;31m FAILED \e[0m          ********"
             echo "****                                     ********"
             echo "*************************************************"
         fi
@@ -187,7 +198,7 @@ elif [[ $1 == "hw" ]]
         else 
             echo "*************************************************"
             echo "****                                     ********"
-            echo -e "****   HARDWARE COMPILE\e[1;31m FIALED \e[0m          ********"
+            echo -e "****   HARDWARE COMPILE\e[1;31m FAILED \e[0m          ********"
             echo "****                                     ********"
             echo "*************************************************"
         fi
@@ -204,7 +215,7 @@ elif [[ $1 == "clean" ]]
         else 
             echo "*************************************************"
             echo "****                                     ********"
-            echo -e "****   COMPILE CLEAN\e[1;31m FIALED \e[0m             ********"
+            echo -e "****   COMPILE CLEAN\e[1;31m FAILED \e[0m             ********"
             echo "****                                     ********"
             echo "*************************************************"
         fi

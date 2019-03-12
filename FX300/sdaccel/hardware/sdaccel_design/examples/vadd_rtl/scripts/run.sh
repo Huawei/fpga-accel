@@ -53,7 +53,7 @@ function Usage
 	echo "sh run.sh emu TARGET XCLBIN           Running CPU/HW Emulation "
 	#echo "sh run.sh hw    TARGET    Running HW "
     echo "-----------------------------example------------------------------"
-    echo "sh  run.sh emu ../prj/bin/host vadd.hw_emu.xilinx_huawei-vu9p-fp1_4ddr-xpr_4_1.xclbin"
+    echo "sh  run.sh emu ../prj/bin/host vadd.hw_emu.xilinx_huawei-vu5p_2ddr-dynamic_5_1.xclbin"
 	echo "------------------------------------------------------------------"
 }
 

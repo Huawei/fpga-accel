@@ -32,6 +32,11 @@ static ssize_t instance_show(struct device *dev,
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+
 	return sprintf(buf, "%u\n", lro->instance);
 }
 static DEVICE_ATTR_RO(instance);
@@ -43,6 +48,11 @@ static ssize_t mb_version_show(struct device *dev,
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
+
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
 
 	val = MGMT_READ_REG32(lro, MB_REG_VERSION);
 
@@ -56,6 +66,11 @@ static ssize_t mb_id_show(struct device *dev,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+
 	val = MGMT_READ_REG32(lro, MB_REG_ID);
 
 	return sprintf(buf, "0x%x\n", val);
@@ -68,6 +83,11 @@ static ssize_t mb_status_show(struct device *dev,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+    
 	val = MGMT_READ_REG32(lro, MB_REG_STATUS);
 
 	return sprintf(buf, "0x%x\n", val);
@@ -79,6 +99,11 @@ static ssize_t mb_error_show(struct device *dev,
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
+
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
 
 	val = MGMT_READ_REG32(lro, MB_REG_ERR);
 
@@ -92,6 +117,11 @@ static ssize_t mb_capability_show(struct device *dev,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+
 	val = MGMT_READ_REG32(lro, MB_REG_CAP);
 
 	return sprintf(buf, "0x%x\n", val);
@@ -103,6 +133,11 @@ static ssize_t mb_power_checksum_show(struct device *dev,
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
+
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
 
 	val = MGMT_READ_REG32(lro, MB_REG_POW_CHK);
 
@@ -116,6 +151,11 @@ static ssize_t mb_pause_show(struct device *dev,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+
 	val = MGMT_READ_REG32(lro, MB_REG_CTL);
 
 	return sprintf(buf, "%d\n", !!(val & MB_CTL_MASK_PAUSE));
@@ -125,7 +165,12 @@ static ssize_t mb_pause_store(struct device *dev, struct device_attribute *da,
 	const char *buf, size_t count)
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
-	u32 val;
+	u32 val = 0;
+
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
 
 	if (kstrtou32(buf, 10, &val) == -EINVAL || val > 1) {
 		return -EINVAL;
@@ -160,6 +205,11 @@ static ssize_t show_mb_pw(struct device *dev, struct device_attribute *da,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+    
 	val = MGMT_READ_REG32(lro, MB_REG_CURR_BASE +
 	    attr->index * sizeof(u32));
 
@@ -173,6 +223,11 @@ static ssize_t show_sysmon(struct device *dev, struct device_attribute *da,
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	u32 val;
 	int32_t	tmp;
+
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
 
 	val = MGMT_READ_REG32(lro, SYSMON_BASE + attr->index);
 
@@ -305,6 +360,11 @@ static void mgmt_sysfs_destroy_sysmon(struct device *dev)
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 
+    if (0 == lro)
+    {
+        return;
+    }
+
 	device_remove_file(dev, &sysmon_name_attr.dev_attr);
 	sysfs_remove_group(&lro->sysmon_hwmon_dev->kobj,
 		&hwmon_sysmon_attrgroup);
@@ -317,6 +377,12 @@ static int mgmt_sysfs_create_sysmon(struct device *dev)
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	int err;
+
+    if (0 == lro)
+    {
+		dev_err(dev, "create sysmon failed: lro is null");
+        return -EINVAL;
+    }
 
 	lro->sysmon_hwmon_dev = hwmon_device_register(dev);
 	if (IS_ERR(lro->sysmon_hwmon_dev)) {
@@ -354,6 +420,11 @@ static void mgmt_sysfs_destroy_mb(struct device *dev)
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 
+    if (0 == lro)
+    {
+        return;
+    }
+
 	device_remove_file(dev, &mb_name_attr.dev_attr);
 	if (lro->mb_cap & MB_CAP_MASK_PM) {
 		sysfs_remove_group(&lro->mb_hwmon_dev->kobj,
@@ -371,6 +442,12 @@ static int mgmt_sysfs_create_mb(struct device *dev)
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	int err;
 
+    if (0 == lro)
+    {
+		dev_err(dev, "create mb attrs failed: lro is null");
+        return -EINVAL;
+    }
+    
 	err = sysfs_create_group(&dev->kobj, &mb_attr_group);
 	if (err) {
 		dev_err(dev, "create mb attrs failed: 0x%x", err);
@@ -418,6 +495,11 @@ int mgmt_init_sysfs(struct device *dev)
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
 	int err;
 
+    if (0 == lro)
+    {
+        return -EINVAL;
+    }
+
 	err = device_create_file(dev, &dev_attr_instance);
 	if (err) {
 		goto fail_exit;
@@ -448,10 +530,16 @@ fail_exit:
 void mgmt_fini_sysfs(struct device *dev)
 {
 	struct xclmgmt_dev *lro = dev_get_drvdata(dev);
+    
+    if (0 == lro)
+    {
+        return;
+    }
 
 	device_remove_file(dev, &dev_attr_instance);
-
+    
 	mgmt_sysfs_destroy_sysmon(dev);
+    
 	if (lro->mb_on) {
 		mgmt_sysfs_destroy_mb(dev);
 	}

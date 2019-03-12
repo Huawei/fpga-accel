@@ -96,7 +96,7 @@ curl -k -s -O --retry 3 https://huawei-fpga.obs.cn-north-1.myhwclouds.com/FX600/
 
 ### 4.3 加载Shell版本到FPGA卡
 
-使用工具`fmtk`将下载的shell bin加载到FPGA卡中，工具`fmtk`下载路径`http://support.huawei.com/enterprise/zh/software/23249385-ESW2000049499`。使用方式可参考《FX600开发者指南》文档中相关章节。
+使用工具`fmtk`将下载的shell bin加载到FPGA卡中，工具`fmtk`请登录`http://support.huawei.com/enterprise/zh/index.html`，在搜索框中输入关键字`fmtk`获取软件包。
 
 #### 说明:
 

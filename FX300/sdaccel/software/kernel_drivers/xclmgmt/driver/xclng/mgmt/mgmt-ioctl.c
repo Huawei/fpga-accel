@@ -74,7 +74,7 @@ long mgmt_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	if (lro_char != lro->user_char_dev)
 		return -ENOTTY;
 
-	if (_IOC_TYPE(cmd) != XCLMGMT_IOC_MAGIC && _IOC_TYPE(cmd) != _IOC_TYPE(XDMA_IOCXVC))
+	if ((_IOC_TYPE(cmd) != XCLMGMT_IOC_MAGIC) && (_IOC_TYPE(cmd) != _IOC_TYPE(XDMA_IOCXVC)))
 		return -ENOTTY;
 
 	if (_IOC_DIR(cmd) & _IOC_READ)

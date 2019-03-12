@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #-------------------------------------------------------------------------------
-#      Copyright (c) 2018 Huawei Technologies Co., Ltd. All Rights Reserved.
+#      Copyright (c) 2018~2019 Huawei Technologies Co., Ltd. All Rights Reserved.
 # 
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the Huawei Software License (the "License").
@@ -30,29 +30,29 @@ function var_chk
 {
     if [ -z ${HOSTEXE} ]
     then 
-        echo -e "host app is not found! Please check it first!\n"
+        echo -e "Error:host app is not found! Please check it first!\n"
         exit
     fi
     
     VALID_KERNEL_NAME=`echo ${KERNEL_NAME} |grep .xclbin`
     if [ -z ${KERNEL_NAME} ]
     then 
-        echo -e "Error£ºkernel is not found, please check!\n"
+        echo -e "Error:kernel is not found, please check!\n"
         exit
     elif [ "${VALID_KERNEL_NAME}" = "" ] 
     then
-    	echo -e "Error£ºkernel is not a xclbin file, please check!\n"
+    	echo -e "Error:kernel is not a xclbin file, please check!\n"
         exit
     fi
     
     VALID_SLOT_ID=`echo ${SLOT_ID}| sed -n "/^[0-9]\+$/p"`
     if [ -z ${SLOT_ID} ]
     then 
-        echo -e "Error£ºslot id is not found, please check!\n"
+        echo -e "Error:slot id is not found, please check!\n"
         exit
     elif [ "${VALID_SLOT_ID}" = "" ]
     then
-        echo -e "Error£ºslot id is not a number, please check!\n"
+        echo -e "Error:slot id is not a number, please check!\n"
         exit
     fi
 }
@@ -97,11 +97,13 @@ function Usage
 	echo "running mmult on card 0:                                          "
     echo "sh run.sh mmult <hardware>/sdaccel_design/examples/mmult_hls/prj/bin/bin_mmult_hw.xclbin 0"
     echo "running mmult on card 1:                                          "
-    echo "sh run.sh mmult ./bin_mmult_hw.xclbin 1                           "
+    echo "sh run.sh mmult <hardware>/sdaccel_design/examples/mmult_hls/prj/bin/bin_mmult_hw.xclbin 1                           "
 	echo "------------------------------------------------------------------"
 }
 
-if [ "$1" == "" -o "$1" == "-h" -o "$1" == "--help" ];then
+if [ "$1" == "" ];then
+    echo -e "Error:Wrong usage! Please use sh run.sh -h or sh run.sh --help for guidence " 
+elif [ "$1" == "-h" -o "$1" == "--help" ];then
     Usage
 else
     var_chk

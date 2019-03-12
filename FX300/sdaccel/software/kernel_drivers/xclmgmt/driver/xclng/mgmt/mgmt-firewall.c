@@ -203,6 +203,12 @@ static struct proc_list *xclmgmt_find_by_pid(struct xclmgmt_dev *lro, struct pid
 void xclmgmt_list_add(struct xclmgmt_dev *lro, struct pid *new_pid)
 {
 	struct proc_list *new_proc = kmalloc(sizeof(struct proc_list), GFP_KERNEL);
+    
+    if (!new_proc) {
+	    printk(KERN_INFO "%s: %s kmalloc fail \n", DRV_NAME, __FUNCTION__);
+        return;
+	}
+    
 	printk(KERN_INFO "%s: %s \n", DRV_NAME, __FUNCTION__);
 	new_proc->pid = new_pid;
 	new_proc->signaled = false;
