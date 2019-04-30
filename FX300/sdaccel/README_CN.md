@@ -1,6 +1,8 @@
 基于SDAccel的开发使用指南
 =======================
 
+[Switch to the English version](./README.md)
+
 #### 说明:
 
 **当前版本仅限root账号进行相关操作，其他账号不能保证功能正确。**
@@ -65,7 +67,7 @@ curl -k -s -O --retry 3 https://huawei-fpga.obs.cn-north-1.myhwclouds.com/FX300/
 
 #### 说明:
 
-用户下载的网表文件及版本信息可参考[release_note.md](../../release_note.md)文件FX300章节，用户根据自己的需求进行选择下载。
+用户下载的网表文件及版本信息可参考[release_note.md](../../release_note_cn.md)文件FX300章节，用户根据自己的需求进行选择下载。
 
 所下载网表文件包含`xilinx_huawei-vu5p_2ddr-dynamic_5_1.dsa、xilinx_huawei-vu5p_2ddr-dynamic_5_1.spfm、xilinx_huawei-vu5p_2ddr-dynamic_5_1.xpfm`三个，下载后存放在以下路径下：
 
@@ -130,4 +132,4 @@ run.sh具体使用请执行sh run.sh -h查看。
 <a name="sec-6"></a>
 ## 6  多ddr 使用说明
 
-用例开发是默认只使用ddr0空间，如果用户有用多个DDR的需求，需要用户修改example。具体的修改方法参见[多DDR使用开发指导](./docs/Using Multiple DDR Banks.md)。
+用例开发是默认只使用ddr0空间，如果用户有用多个DDR的需求，需要用户修改example。具体的修改方法参见[多DDR使用开发指导](./docs/Using Multiple DDR Banks_cn.md)。

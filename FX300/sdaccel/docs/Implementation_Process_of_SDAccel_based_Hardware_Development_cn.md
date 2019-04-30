@@ -1,6 +1,8 @@
 基于SDAccel硬件开发流程
 =======================
 
+[Switch to the English version](./Implementation_Process_of_SDAccel_based_Hardware_Development.md)
+
 
 目录
 -------------------------

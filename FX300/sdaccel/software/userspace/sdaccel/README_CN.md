@@ -1,6 +1,9 @@
 
 
 # 目录说明
+
+[Switch to the English version](./README.md)
+
 此目录存放 opencl 开发实例编译运行过程中依赖的HAL相关源码
 
 # 目录结构

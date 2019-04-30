@@ -1,7 +1,7 @@
 # 基于c实现kernel的一个基于opencl矩阵乘法实例
 ================================
 
-
+[Switch to the English version](./README.md)
 
 这是一个基于opencl矩阵乘法实例，基于c实现kernel。
 

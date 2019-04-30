@@ -1,95 +1,102 @@
-# FPGA 加速卡开发套件特性概述
+
+# FPGA Accelerator Card Development Suite Feature Overview
+
+[切换到中文版](./release_note_cn.md)
 
 ## FX300
-* 基于VU5P的FPGA加速卡
+* VU5P-based FPGA accelerator card
 
-* 每个FPGA加速卡可以使用的主要接口如下：
-  - `1个pcie gen3 x8 `接口    
-  - `2个ddr4` RDIMM接口
-  - `2个100Gbps` 以太网接口 
+* Interfaces available for each FPGA accelerator card are as follows:
+  - `One PCIe 3.0 x8` interface    
+  - `Two DDR4` RDIMM interfaces
+  - `Two 100 Gbit/s` Ethernet interfaces 
 
-* PCIE支持的特性：
-    - `2个PF`(physical function)
-    - `PF0`供用户使用，Bar0空间大小为32MB，Bar1空间大小为64KB。
-    - `PF1`管理侧使用，Bar0空间大小为32MB，Bar1空间大小为128KB。
+* PCIe features are as follows:
+    - `Two physical functions (PFs)`
+    - `PF0` is used by users. The size of Bar0 is 32 MB, and the size of Bar1 is 64 KB.
+    - `PF1` is for management. The size of Bar0 space is 32 MB, and the size of Bar1 is 128 KB.
 
-* 用户逻辑和静态逻辑之间的接口特性:
-    - 用户逻辑和静态逻辑之间的数据通道是`512 bit`位宽的AXI4-MM接口
-    - 用户逻辑和静态逻辑之间的控制通道是`32 bit`位宽的AXI4-Lite接口
+* Interface features between user logic and static logic are as follows:
+    - The data channel from user logic to static logic uses the AXI4-MM interface with a bit width of `512 bits`.
+    - The control channel from user logic to static logic uses the AXI4-Lite interface with a bit width of `32 bits`.
 
 
-* DDR接口划分：
-  - 2个DDR控制器放置在用户逻辑部分
-  - 支持用户最多使用`2个DDR控制器`
+* The DDR interface partition is as follows:
+  - Two DDR controllers are placed in the user logic partition.
+  - A maximum of two DDR controllers can be used.
+
+
+### Release 1.1.1
+
+- Version 01210127
+- Added the IIC clock extension feature.
 
 ### Release 1.1.0
 
-- 版本号01210126
-- 合入hot_reset
+- Version 01210126
+- Added hot_reset.
 
 ### Release 1.0.0
 
-- 版本号01210125
-- 支持SDx 2017.4.op开发套件
-- 支持1:N多卡场景
-- 支持多shell版本共存场景
-- 文档优化
-
+- Version 01210125
+- Supported the SDx 2017.4.op development suite.
+- Supported the 1:N multi-card scenario.
+- Supported coexistence of multiple shell versions.
+- Optimized the document.
 
 ---
-# FX300 FPGA实例特性详述
+# FX300 FPGA Example Feature Description
 
-# 目录
+# Contents
 
-## 1. [工程构建](#工程构建)
-## 2. [应用测试](#应用测试)
-## 4. [工具环境](#工具环境)
-## 5. [license要求](#license要求)
-## 6. [即将支持特性](#即将支持特性)
+## 1 [Project Building](#Project Building)
+## 2 [Application Tests](#Application Tests)
+## 4 [Tools and Environment](#Tools and Environment)
+## 5 [License Requirements](#License Requirements)
+## 6 [Features To Be Supported](#Features To Be Supported)
 ***
-<a name="工程构建"></a>
-# 工程构建
+<a name="Project Building"></a>
+# Project Building
 
-## 概述
-执行工程构建之前必须要`确认SDx_2017.4.op工具及license安装完成`；工程构建旨在用户通过最小的改动实现符合时序要求的工程设计。
+## Overview
+Before building a project, `ensure that SDx_2017.4.op tool and license are installed`. The project building aims to design a project that meets the timing requirements through the minimum modification.
 
-## 特性列表
+## Features
 
-* 支持sdaccel高级语言设计
+* SDAccel advanced language design
 
-* 支持用户使用`opencL、c和c++`编码代码
+* `OpenCL, C, and C++` coding
 
-* 支持`一键式`创建用户目录
+* `One-click` user directory creation
 
-* SHELL的SHA256校验
-
-
----
-
-<a name="应用测试"></a>
-
-# 应用测试
-
-## 概述
-
-用户可以参考已有的app 工程子目录进行应用设计，对工程进行特性或功能测试。
+SHA256 verification of * SHELL
 
 ---
 
-<a name="工具环境"></a>
+<a name="Application Tests"></a>
 
-# 工具环境
+# Application Tests
 
-* 支持的工具和环境如下：
+## Overview
+
+You can use the existing app project subdirectory to design applications and test features or functions of the project.
+
+---
+
+<a name="Tools and Environment"></a>
+
+# Tools and Environment
+
+* The supported tools and environment are as follows:
   - Linux `centos 7.3`  
   - Xilinx `SDx 2017.4.op` 
 
 ---
 
-<a name="license要求"></a>
+<a name="License Requirements"></a>
 
-# license要求
-* 需要的license如下      
+# License Requirements
+* The required licenses are as follows:      
   - SysGen  
   - PartialReconfiguration  
   - Simulationt  
@@ -104,94 +111,102 @@
 
 ## FX600
 
-* 基于VU9P的FPGA加速卡的开发套件
+* VU9P-based FPGA accelerator card development suite
 
-* 每个FPGA加速卡可以使用的主要接口如下：
-  - `1个pcie gen3 x 16 `接口    
-  - `4个ddr4` RDIMM接口
-  - `2个100Gbps` 以太网接口 
+* Interfaces available for each FPGA accelerator card are as follows:
+  - `One PCIe 3.0 x16` interface    
+  - `Four DDR4` RDIMM interfaces
+  - `Two 100 Gbit/s` Ethernet interfaces 
 
-* PCIE支持的特性：
-    - `2个PF`(physical function)
-    - `PF0`供用户使用，Bar0空间大小为32MB，Bar1空间大小为64KB
-    - `PF1`管理侧使用，Bar0空间大小为32MB，Bar1空间大小为128KB
+* PCIe features are as follows:
+    - `Two physical functions (PFs)`
+    - `PF0` is for users. The size of Bar0 is 32 MB, and the size of Bar1 is 64 KB.
+    - `PF1` is for management. The size of Bar0 space is 32 MB, and the size of Bar1 is 128 KB.
 
-* 用户逻辑和静态逻辑之间的接口特性:
-    - 用户逻辑和静态逻辑之间的数据通道是`512 bit`位宽的AXI4-MM接口
-    - 用户逻辑和静态逻辑之间的控制通道是`32 bit`位宽的AXI4-Lite接口
+* Interface features between user logic and static logic are as follows:
+    - The data channel from user logic to static logic uses the AXI4-MM interface with a bit width of `512 bits`.
+    - The control channel from user logic to static logic uses the AXI4-Lite interface with a bit width of `32 bits`.
 
 
-* DDR接口划分：
-  - 4个DDR控制器放置在用户逻辑部分
-  - 支持用户最多使用`4个DDR控制器`
+* The DDR interface partition is as follows:
+  - Four DDR controllers are placed in the user logic partition.
+  - A maximum of four DDR controllers can be used.
+
+### Release 1.1.2
+
+- Removed the FX600 SDAccel suite.
+
+### Release 1.1.1
+
+- Version 01210165
+- Added the IIC clock extension feature.
 
 ### Release 1.1.0
 
-- 版本号01210163
-- 合入hot_reset
+- Version 01210163
+- Added hot_reset.
 
 ### Release 1.0.0
 
-- 版本号01210162
-- 支持SDx 2017.4.op开发套件
-- 支持1:N多卡场景
-- 支持多shell版本共存场景
-- 文档优化
+- Version 01210162
+- Supported the SDx 2017.4.op development suite.
+- Supported the 1:N multi-card scenario.
+- Supported coexistence of multiple shell versions.
+- Optimized the document.
 
 ---
-# FX600 FPGA实例特性详述
+# FX600 FPGA Example Feature Description
 
-# 目录
+# Contents
 
-## 1. [工程构建](#工程构建)
-## 2. [应用测试](#应用测试)
-## 4. [工具环境](#工具环境)
-## 5. [license要求](#license要求)
-## 6. [即将支持特性](#即将支持特性)
+## 1 [Project Building](#Project Building)
+## 2 [Application Tests](#Application Tests)
+## 4 [Tools and Environment](#Tools and Environment)
+## 5 [License Requirements](#License Requirements)
+## 6 [Features To Be Supported](#Features To Be Supported)
 ***
-<a name="工程构建"></a>
-# 工程构建
+<a name="Project Building"></a>
+# Project Building
 
-## 概述
-执行工程构建之前必须要`确认SDx_2017.4.op工具及license安装完成`；工程构建旨在用户通过最小的改动实现符合时序要求的工程设计。
+## Overview
+Before building a project, `ensure that SDx_2017.4.op tool and license are installed`. The project building aims to design a project that meets the timing requirements through the minimum modification.
 
-## 特性列表
+## Features
 
-* 支持sdaccel高级语言设计
+* SDAccel advanced language design
 
-* 支持用户使用`opencL、c和c++`编码代码
+* `OpenCL, C, and C++` coding
 
-* 支持`一键式`创建用户目录
+* `One-click` user directory creation
 
-* SHELL的SHA256校验
-
-
----
-
-<a name="应用测试"></a>
-
-# 应用测试
-
-## 概述
-
-用户可以参考已有的app 工程子目录进行应用设计，对工程进行特性或功能测试。
+SHA256 verification of * SHELL
 
 ---
 
-<a name="工具环境"></a>
+<a name="Application Tests"></a>
 
-# 工具环境
+# Application Tests
 
-* 支持的工具和环境如下：
+## Overview
+
+You can use the existing app project subdirectory to design applications and test features or functions of the project.
+
+---
+
+<a name="Tools and Environment"></a>
+
+# Tools and Environment
+
+* The supported tools and environment are as follows:
   - Linux `centos 7.3`  
   - Xilinx `SDx 2017.4.op` 
 
 ---
 
-<a name="license要求"></a>
+<a name="License Requirements"></a>
 
-# license要求
-* 需要的license如下      
+# License Requirements
+* The required licenses are as follows:      
   - SysGen  
   - PartialReconfiguration  
   - Simulationt  
@@ -200,4 +215,7 @@
   - ap_opencl  
   - XCVU9P  
   - xcvu9p_bitgen   
+
+
+
 

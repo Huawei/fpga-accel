@@ -64,6 +64,9 @@ extern "C" {
 /*! \def ALARM_DATA_VER
 \brief A macro that defines the version of FPGA alarm data structure.*/
 #define ALARM_DATA_VER                                                 3
+/*! \def COMPONENT_DATA_VER
+\brief A macro that defines the version of FPGA component data structure.*/
+#define COMPONENT_DATA_VER                                             1
 /*! \def MAC_DATA_BYTES_LEN
 \brief A macro that defines the maximum bytes of FPGA mac address data.*/
 #define MAC_DATA_BYTES_LEN                                             6
@@ -120,10 +123,17 @@ extern "C" {
 \brief A macro that defines the maximum number of fc module */
 #define FC_NUM_MAX           2
 
-/*! \def FC_NUM_MAX
+/*! \def SPD_NUM_MAX
 \brief A macro that defines the maximum number of dimm */
 #define SPD_NUM_MAX          4
 
+/*! \def COMPONENT_NUM_MAX
+\brief A macro that defines the maximum number of Component */
+#define COMPONENT_NUM_MAX   8
+
+/*! \def COMPONENT_NAME_LEN
+\brief A macro that defines the maximum char of the component name*/
+#define COMPONENT_NAME_LEN  32
 
 /**
   * @brief Data structure of an FMTK API session
@@ -144,7 +154,8 @@ typedef struct
     unsigned DeviceIdx[MAX_NUM_OF_FPGA_PER_HOST];        /*!< The device index data array , index is FPGA device slot number*/
     unsigned ShellID[MAX_NUM_OF_FPGA_PER_HOST];          /*!< The shellID data array , index is FPGA device index*/
     void* pMcuInfoBuff[MAX_NUM_OF_FPGA_PER_HOST];        /*!< The MCU E-Lable array , index is FPGA device index*/
-
+    char brdHwInfoErrStatus[MAX_NUM_OF_FPGA_PER_HOST];        /*!< The hardware information error status array , index is the FPGA device index*/     
+    char brdModelNumIsExist[MAX_NUM_OF_FPGA_PER_HOST];        /*!< Whether the module number exists  array , index is the FPGA device index*/
 }FmSession;
 
 
@@ -326,6 +337,8 @@ typedef struct
     char serial[FMTK_MAX_LABEL_LEN];               /*!< Serial for the device      */
     char manufacturer[FMTK_MAX_LABEL_LEN];         /*!< manufacturer for the device  */
     char mcuFirmwareVer[FMTK_MAX_LABEL_LEN];
+    char boardName[FMTK_MAX_LABEL_LEN];
+    char modelNumber[FMTK_MAX_LABEL_LEN];
 
 }FM_DETAILED_ID_DATA;
 
@@ -435,6 +448,20 @@ typedef struct
     unsigned int    userCtrlFirewallReturn; //!< User control channel firewall error return code
     unsigned int    userDatafirewallReturn; //!< User data channel firewall error return code
 } FM_DEVICE_ALARM_DATA;
+
+
+/**
+  * @brief Data structure of Component information
+  *
+  * Data can be fetched from API \ref FmAPI_GetComponentVers
+*/
+typedef struct
+{
+    unsigned int version;
+    unsigned int componentCount;
+    char componentName[COMPONENT_NUM_MAX][COMPONENT_NAME_LEN]; 
+    unsigned int componentVersion[COMPONENT_NUM_MAX];     
+}FM_COMPONENT_DATA;
 
 /*@}*/
 
@@ -618,6 +645,23 @@ FM_INTERFACE FmAPI_GetDDRDatas(FmSession* FmSessionHdl, unsigned FpgaSlot, FM_DD
   * \retval - \ref FM_API_ERR_GET_IDENTIFIERS_ERR Error occured during Getting indentifiers.
   */
 FM_INTERFACE FmAPI_GetDeviceAlarm(FmSession* FmSessionHdl, unsigned FpgaSlot, FM_DEVICE_ALARM_DATA* Ids );
+
+/**
+  * \brief Gets device dimm information corresponding to the FpgaSlot.
+  * \remarks This must be called after \ref FmAPI_StartSession, or an \ref FM_API_ERR_ILLEGAL_INPUT will be returned.
+  * \param[in] FmSessionHdl  The Fmtk session handle
+  * \param[in] FpgaSlot FPGA Index corresponding to which the Identifiers
+  *                            would be fetched
+  * \param[in, out]  Ids Device \ref FM_COMPONENT_DATA Identifiers corresponding to FpgaSlot.
+  * \return \ref FM_INTERFACE
+  * \retval - \ref FM_API_SUCCESS Get indentifiers successfully.
+  * \retval - \ref FM_API_ERR_LIB_NOT_INIT The API system had not been initialed.
+  * \retval - \ref FM_API_ERR_ILLEGAL_INPUT FmSessionHdl is null or Ids is null.
+  * \retval - \ref FM_API_ERR_VER_MISMATCH The \ref FM_FIRMWARES_DATA version mismatches the one in library.
+  * \retval - \ref FM_API_ERR_GET_IDENTIFIERS_ERR Error occured during Getting indentifiers.
+  */
+FM_INTERFACE FmAPI_GetComponentVers(FmSession* FmSessionHdl, unsigned FpgaSlot, FM_COMPONENT_DATA* Id );
+
 
 /*@}*/
 

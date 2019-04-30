@@ -1,5 +1,7 @@
 # 目录说明
 
+[Switch to the English version](./README.md)
+
 
 此目录存放硬件平台信息
 

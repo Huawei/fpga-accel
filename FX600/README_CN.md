@@ -1,12 +1,14 @@
 ## 目录结构
 
+[Switch to the English version](./README.md)
+
 ---
 
-- sdaccel
-
-- FAQs
+- FAQs_cn
 
 - bare_metal
+
+- hw_platform
 
 - README_CN.md
 
@@ -17,17 +19,17 @@
 
 <a id="sec-3-1" name="sec-3-1"></a>
 
-- sdaccel
-
-  用户基于SDx工具线下开发的套件。
-
-- FAQs
+- FAQs_cn
 
   常见问题汇总。
 
 - bare_metal
 
   存放参考设计文件夹。
+
+- hw_platform
+
+  存放组件等硬件平台文件。
 
 - README_CN.md
 

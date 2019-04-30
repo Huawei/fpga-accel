@@ -1,6 +1,7 @@
 Kernel基于rtl语言实现的矢量相加实例
 ============================================
 
+[Switch to the English version](./README.md)
 
 这是一个基于opencl的矢量相加实例，其kernel部分基于rtl语言实现. 
 

@@ -1,6 +1,8 @@
 Kernel基于c语言实现的矩阵乘法实例
 ================================
 
+[Switch to the English version](./README.md)
+
 
 这是一个基于opencl的16*16矩阵乘法实例，其kernel部分基于c语言实现. 
 

@@ -1,10 +1,12 @@
 ## 目录结构
 
+[Switch to the English version](./README.md)
+
 ---
 
 - sdaccel
 
-- FAQs
+- FAQs_cn
 
 - bare_metal
 
@@ -21,7 +23,7 @@
 
   用户基于SDx工具线下开发的套件。
 
-- FAQs
+- FAQs_cn
 
   常见问题汇总。
 

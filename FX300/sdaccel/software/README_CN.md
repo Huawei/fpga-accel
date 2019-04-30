@@ -1,5 +1,6 @@
  # 目录结构说明
 
+[Switch to the English version](./README.md)
 
 * app  
   该目录用于存放用户示例的应用程序及运行应用程序的说明，用户可以参考示例程序构建自己的应用。  

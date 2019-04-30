@@ -1,5 +1,7 @@
 # 目录说明
 
+[Switch to the English version](./README.md)
+
 
 此目录存放 opencl host端程序实例源码。 
 

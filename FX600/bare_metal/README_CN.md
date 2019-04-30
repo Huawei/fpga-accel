@@ -1,5 +1,7 @@
 ## 目录结构
 
+[Switch to the English version](./README.md)
+
 ---
 
 - ref_design

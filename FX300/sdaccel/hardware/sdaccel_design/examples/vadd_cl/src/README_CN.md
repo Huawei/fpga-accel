@@ -1,6 +1,8 @@
 ## 矢量相加实例
 ===============================
 
+[Switch to the English version](./README.md)
+
 这是一个opencl 矢量相加的实例，基于opencl c实现kernel。
 
 ## 该实例包含以下文件

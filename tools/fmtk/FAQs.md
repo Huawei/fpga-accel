@@ -1,29 +1,30 @@
-# Frequently Asked Questions
+# FAQs
+[切换到中文版](./FAQs_CN.md)
 
-**Q1: 什么是FX300?**
+**Q1: What is FX300?**
 
-FX300 FPGA加速卡（以下简称FX300）是一张半高半长单槽位PCIe卡，基于Xilinx的Virtex UltraScale+ XCVU5P FPGA芯片，支持PCIe Gen3.0 x16接口，支持2个100GE的QSFP28光口。FX300作为标准PCIe卡，可以用于华为公司的服务器上，也可以用于业界其他供应商的标准服务器。
+The F300 FPGA accelerator card (FX300) is a half-height half-length (HHHL) single-slot PCIe card based on the Xilinx Virtex UltraScale+ XCVU5P FPGA chip. It supports PCIe 3.0 x16 ports and provides two 100GE QSFP28 optical ports. The FX300 is a standard PCIe card and can be used on Huawei servers or standard servers of other vendors.
 
-**Q2:什么是FX600？**
+**Q2: What is FX600?**
 
-FX600 FPGA加速卡（以下简称FX600）是一张全高3/4长双槽位PCIe卡，基于Xilinx的Virtex UltraScale+ XCVU9P FPGA芯片，支持PCIe Gen3.0 x16接口，支持2个100GE的QSFP28光口。FX600作为标准PCIe卡，可以用于华为公司的服务器上，也可以用于业界其他供应商的标准服务器。
+The F600 FPGA accelerator card (FX600) is a full-height 3/4-length single-slot PCIe card based on the Xilinx Virtex UltraScale+ XCVU9P FPGA chip. It supports PCIe 3.0 x16 ports and provides two 100GE QSFP28 optical ports. The FX600 is a standard PCIe card and can be used on Huawei servers or standard servers of other vendors.
 
-**Q3: 什么是Shell？**
+**Q3: What is Shell?**
 
-Shell是HDK提供的静态逻辑部分，包括PCIe、DDR4等外围接口设计。
+Shell is the static logic provided by the HDK, including peripheral interfaces such as PCIe and DDR4.
 
-**Q4: 什么是固件生效？**
+**Q4: What is firmware validation?**
 
-固件生效是指golden和shell升级后，通过调用相关的API接口完成升级后固件的生效。
+After Golden and Shell are upgraded, invoke the APIs to make the upgraded firmware take effect.
 
-**Q5: 什么是固件重加载？**
+**Q5: What is firmware reloading?**
 
-固件重加载是指用户通过调用相关API完成从指定FLASH区域加载固件。
+Firmware reloading is to load the firmware from a specified flash area by invoking the APIs.
 
-**Q6：详细信息查询能获取哪些信息？**
+**Q6: What information do the details provide?**
 
-详细信息可以提供电子标签信息、光模块信息、DIMM信息、功率、电压、温度等信息。
+The details provide the electronic label information, optical module information, DIMM information, power, voltage, and temperature.
 
-**Q7：健康状态查询针对哪些场景？**
+**Q7: When is the health status available?**
 
-健康状态查询只针对FX300/FX600加载了华为提供的OCL逻辑场景。
+The health status applies only when the OCL logic provided by Huawei is uploaded to the FX300 or FX600.

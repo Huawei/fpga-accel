@@ -1,7 +1,7 @@
 使用基于SDAccel的Example
 =======================
 
-
+[Switch to the English version](./Using_an_SDAccel_based_Example.md)
 
 目录
 -------------------------
@@ -24,7 +24,7 @@
 总体操作流程
 ------------
 
-![](media/SDAccel_example.jpg)
+![](media/SDAccel_example_cn.jpg)
 
 
 <a id="sec-2" name="sec-2"></a>

@@ -1,6 +1,8 @@
 # 这是一个opencl 矢量相加的实例，基于rtl实现kernel
 ============================================
 
+[Switch to the English version](./README.md)
+
 这是一个opencl 矢量相加的实例，基于rtl实现kernel。
 
 ## 该实例包含以下文件

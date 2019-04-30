@@ -1,9 +1,9 @@
 # 目录结构
 
+[Switch to the English version](./README.md)
 
 * [sdaccel_design/user](#sdaccel_design/user)/  
   - create_prj.sh
-  - README_CN.md 
 
 # 目录说明  
 * create_prj.sh  

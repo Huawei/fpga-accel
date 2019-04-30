@@ -66,23 +66,23 @@ void GetOpticalInfo(FmSession* SessionHdl, unsigned slot)
 
     for (i = 0; i < OpticalModule.fcCount; i++)
     {   
-        printf( "      |---- MOUDLE[%u]_State\t\t\t\t: %s\n", i+1, OpticalModule.state[i]);
+        printf( "      |---- MODULE[%u]_State\t\t\t\t: %s\n", i+1, OpticalModule.state[i]);
 
         if ( 0 == strncmp( OpticalModule.state[i], "invalid", 7) )
         {
             continue;
         }
 
-        printf("      |---- MOUDLE[%u]_Manufacturer\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.manufacturer[i]));
-        printf("      |---- MOUDLE[%u]_Production_Date\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.productionDate[i]));
-        printf("      |---- MOUDLE[%u]_Part_Number\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.partNumber[i]));
-        printf("      |---- MOUDLE[%u]_Serial_Number\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.serialNumber[i]));
-        printf("      |---- MOUDLE[%u]_Temperature\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.temperature[i]));
-        printf("      |---- MOUDLE[%u]_Voltage\t\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.voltage[i]));
-        printf("      |---- MOUDLE[%u]_Type\t\t\t\t: %s \n", i+1, NULL_FOR_NA(OpticalModule.model[i]));
-        printf("      |---- MOUDLE[%u]_Wave_Length\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.waveLength[i]));
-        printf("      |---- MOUDLE[%u]_Mode\t\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.fcMode[i]));
-        printf("      |---- MOUDLE[%u]_Channel_Count\t\t\t: %u\n", i+1, OpticalModule.channelCount[i]);
+        printf("      |---- MODULE[%u]_Manufacturer\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.manufacturer[i]));
+        printf("      |---- MODULE[%u]_Production_Date\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.productionDate[i]));
+        printf("      |---- MODULE[%u]_Part_Number\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.partNumber[i]));
+        printf("      |---- MODULE[%u]_Serial_Number\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.serialNumber[i]));
+        printf("      |---- MODULE[%u]_Temperature\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.temperature[i]));
+        printf("      |---- MODULE[%u]_Voltage\t\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.voltage[i]));
+        printf("      |---- MODULE[%u]_Type\t\t\t\t: %s \n", i+1, NULL_FOR_NA(OpticalModule.model[i]));
+        printf("      |---- MODULE[%u]_Wave_Length\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.waveLength[i]));
+        printf("      |---- MODULE[%u]_Mode\t\t\t\t: %s\n", i+1, NULL_FOR_NA(OpticalModule.fcMode[i]));
+        printf("      |---- MODULE[%u]_Channel_Count\t\t\t: %u\n", i+1, OpticalModule.channelCount[i]);
         
     }
 
@@ -160,7 +160,9 @@ void GetElabelInfo(FmSession* SessionHdl, unsigned slot)
         return;
     }
 
+    printf("      |---- BoardName                                   : %s\n", NULL_FOR_NA(DetailedInfo.boardName));
     printf("      |---- ProductName                                 : %s\n", NULL_FOR_NA(DetailedInfo.productName));
+    printf("      |---- ModelNumber                                 : %s\n", NULL_FOR_NA(DetailedInfo.modelNumber));
     printf("      |---- Serial                                      : %s\n", NULL_FOR_NA(DetailedInfo.serial));
     printf("      |---- Manufacturer                                : %s\n", NULL_FOR_NA(DetailedInfo.manufacturer));
     printf("      |---- FruFileID                                   : %s\n", NULL_FOR_NA(DetailedInfo.fruFileID));
@@ -219,6 +221,38 @@ void GetDimmInfo(FmSession* SessionHdl, unsigned slot)
     return;
 }
 
+/*******************************************************************************
+Function     : GetComponentInfo
+Description  : Get the component information
+Input        : FmSession* SessionHdl, unsigned slot
+Output       : None
+Return       : None
+*******************************************************************************/
+void GetComponentInfo(FmSession* SessionHdl, unsigned slot)
+{
+    FM_COMPONENT_DATA strComponent = { 0 };
+    fmerrno ret = FM_API_ERR_CODE_EINVAL;
+    int i = 0;
+
+    ret = FmAPI_GetComponentVers(SessionHdl, slot, &strComponent);
+    if ( FM_API_SUCCESS != ret )
+    {
+        printf("Get M-brick info failed, err code: %d\n", ret);
+        return;
+    }  
+
+    printf("   M-BRICK INFO\n");
+
+    for (i = 0; i < strComponent.componentCount; i++)
+    {
+       
+        (strComponent.componentVersion[i] == 0)? \
+        printf("      |---- M-brick[%s] Version\t\t\t: %s\n", strComponent.componentName[i], "n/a"):
+        printf("      |---- M-brick[%s] Version\t\t\t: %x\n", strComponent.componentName[i], strComponent.componentVersion[i]);
+    }
+    
+    return;
+}
 
 /*******************************************************************************
 Function     : DemoAcquireDetailInfo
@@ -264,6 +298,7 @@ void DemoAcquireDetailInfo()
     GetPowerInfo(SessionHdl, 0);
     GetOpticalInfo(SessionHdl, 0);
     GetDimmInfo(SessionHdl, 0);
+    GetComponentInfo(SessionHdl, 0);
 
     /* Other API call can be added here */
     
